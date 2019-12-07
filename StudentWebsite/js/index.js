@@ -1,53 +1,41 @@
-$(document).ready(function() {
+$(document).ready(function()
+{
     var apiKey = "f4ada8fafef7d64f6a82b7a37d6f559a" // Enter your API Key here
-    console.log(`state_info is: ${state_info}`) // Notice the templating here, use that when you form your url
 
-
-    // TODO
-    // Iterate over the state_info array and call the api for each state_name to get the current temperature
-    // Example to call the api using state_name
-    // This should be done inside the for loop
-    Object.keys(state_info).forEach(function(state)
+    for(var state in state_info)
     {
-      var url = "https://api.forecast.io/forecast/" + apiKey + "/" + state_info[state]['lat'] + "," + state_info[state]['lng'];
+      var lat = state_info[state].lat;
+      var long = state_info[state].lng;
+      var state_name = state;
+      var url = `https://api.darksky.net/forecast/${apiKey}/${lat},${long}`;
 
-      $.ajax
-      ({
-        url:url,
-        dataType:"jsonp"
-      })
-
-      .then(function(data)
+      $.ajax({url:url, state:state, dataType:"jsonp"}).then(function(data)
       {
-        console.log(data)
-        var temperature = null
-        // TODO
-        // Fill in the RHS of the below line and uncomment it. Remember how we accessed the temperature in Lab 9.
+        var state = this.state;
         var temperature = data.currently.temperature;
 
-        console.log(temperature)
-
-        //TODO
-        // Default color gray
-        // Create a series of if else blocks to set the color for the state based on the temperature
-        // Less than equal to 10 should be blue
-        // Between 11 and 30 should be cyan
-        // Between 31 and 50 should be green
-        // Between 51 and 80 should be orange
-        // Greater than 80 should be red
-
         if (temperature <= 10.0)
-            $('#' + state).css('fill', 'blue')
-        else if (temperature >= 11.0 && x <= 30.0)
-            $('#' + state).css('fill', 'cyan')
-        else if (temperature >= 31.0 && x <= 50.0)
-            $('#' + state).css('fill', 'green')
-        else if (temperature >= 51.0 && x <= 80.0)
-            $('#' + state).css('fill', 'orange')
-        else if (temperature > 80.0)
-            $('#' + state).css('fill', 'red')
+            $(`#${state}`).css('fill', "#6495ED")
+        else if (temperature >= 11.0 && x <= 20.0)
+            $(`#${state}`).css('fill', "#7FFFD4")
+        else if (temperature >= 21.0 && x <= 30.0)
+            $(`#${state}`).css('fill', "#0000FF")
+        else if (temperature >= 31.0 && x <= 40.0)
+            $(`#${state}`).css('fill', "#008B8B")
+        else if (temperature >= 41.0 && x <= 50.0)
+            $(`#${state}`).css('fill', "#00BFFF")
+        else if (temperature >= 51.0 && x <= 60.0)
+            $(`#${state}`).css('fill', "#F08080")
+        else if (temperature >= 61.0 && x <= 70.0)
+            $(`#${state}`).css('fill', "#CD5C5C")
+        else if (temperature >= 71.0 && x <= 80.0)
+            $(`#${state}`).css('fill', "#8B0000")
+        else if (temperature >= 81.0 && x <= 90.0)
+            $(`#${state}`).css('fill', "#B22222")
+        else if (temperature > 90.0)
+            $(`#${state}`).css('fill', "#FF0000")
         else
-            $('#' + state).css('fill', 'gray')
+            $(`#${state}`).css('fill', "#808080")
       });
     });
 });

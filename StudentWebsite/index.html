@@ -10,19 +10,16 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="959" height="593">
       <defs>
         <style type="text/css">
+        .state {fill:#D3D3D3;}
+        /*
+        The .state class sets the default fill color for all states.
 
-      .state {fill:#D3D3D3;}
+        Individual states (such as Kansas, Montana, Pennsylvania) can be colored as follows:
 
-      /*
-      The .state class sets the default fill color for all states.
+        #KS, #MT, #PA {fill:#0000FF;}
 
-      Individual states (such as Kansas, Montana, Pennsylvania) can be colored as follows:
-
-      #KS, #MT, #PA {fill:#0000FF;}
-
-      Place this code in the empty space below.
-      */
-
+        Place this code in the empty space below.
+        */
         </style>
       </defs>
       <g class="state">
@@ -187,9 +184,9 @@
       <!-- End of World Map -->
 
       <!-- Import state_info.js here-->
-       <script src="info.js"></script>
+       <script type = "text/javascript" src = "./js/state_info.js"></script>
 
       <!-- Import index.js here-->
-      <script src="index.js"></script>
+      <script type = "text/javascript" src = "./js/index.js"></script>
     </body>
 </html>
